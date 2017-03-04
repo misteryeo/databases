@@ -4,29 +4,25 @@ USE chat;
 
 CREATE TABLE messages (
   /* Describe your table here.*/
-  messageId varchar(10),
-  message varchar(10),
+  id varchar(10) primary key,
+  message varchar(50),
   userId varchar(10),
-  roomId varchar(10),
-  primary key (messageId),
-  foreign key(userId) references users(userId),
-  foreign key(roomId) references room(roomId)
-)
+  roomId varchar(10)
+);
 
 /* Create other tables and define schemas for them here! */
 CREATE TABLE users (
   /* Describe your table here.*/
-  userId varchar(10),
-  roomName varchar(10),
-  primary key (userId), 
-)
+  id varchar(10) primary key,
+  roomName varchar(10)
+);
 
 CREATE TABLE room (
   /* Describe your table here.*/
-  roomId varchar(10),
-  roomName varchar(10),
-  primary key (roomId),
+  id varchar(10) primary key,
+  roomName varchar(10)
 )
+
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root < server/schema.sql
