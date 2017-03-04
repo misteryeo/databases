@@ -2,7 +2,11 @@ var express = require('express');
 var db = require('./db');
 
 // Middleware
+// THESE ARE FUNCTIONS EXECUTED WHEN HTTP REQUESTS ARE MADE TO REST ENDPOINTS. 
+// SPECIFICALLY MORGAN IS USED TO LOG HTTP REQUESTS
+// READ MORE: https://github.com/expressjs/morgan
 var morgan = require('morgan');
+// PARSE INCOMING REQUEST BODIES IN MIDDLEWARE BEFORE HANDLERS
 var parser = require('body-parser');
 
 // Router
