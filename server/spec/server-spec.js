@@ -5,6 +5,7 @@ var mysql = require('mysql');
 var request = require('request'); // You might need to npm install the request module!
 var expect = require('chai').expect;
 
+// CHECKS TO SEE IF CONNECTION IS WORKING
 describe('Persistent Node Chat Server', function() {
   var dbConnection;
 
@@ -27,6 +28,7 @@ describe('Persistent Node Chat Server', function() {
     dbConnection.end();
   });
 
+  // MAKES A POST REQUEST WITH USERNAME VALJEAN AND THEN A SUBSEQUENT POST REQUEST CONTAINING USER'S POST, MAKES A QUERY TO ALL COLUMNS IN MESSAGES TABLE AND CHECKS THAT FIRST MESSAGE EQUALS THE ONE THAT WAS POSTED
   it('Should insert posted messages to the DB', function(done) {
     // Post the user to the chat server.
     request({
@@ -49,6 +51,7 @@ describe('Persistent Node Chat Server', function() {
 
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
+        // DON'T THINK WE NEED TO CHANGE ANYTHING HERE
         var queryString = 'SELECT * FROM messages';
         var queryArgs = [];
 
@@ -56,8 +59,9 @@ describe('Persistent Node Chat Server', function() {
           // Should have one result:
           expect(results.length).to.equal(1);
 
-          // TODO: If you don't have a column named text, change this test.
-          expect(results[0].text).to.equal('In mercy\'s name, three days is all I need.');
+          // TODO: If you don't have a column named text, change this test. 
+          // CHANGED TO MESSAGE
+          expect(results[0].message).to.equal('In mercy\'s name, three days is all I need.');
 
           done();
         });
@@ -65,6 +69,7 @@ describe('Persistent Node Chat Server', function() {
     });
   });
 
+  // MAKES A REQUEST TO THE SERVER TO RETRIEVE THE MESSAGE WE INSERTED
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
        var queryString = "";
